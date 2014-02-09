@@ -46,6 +46,7 @@ class LineItemsController < ApplicationController
     respond_to do |format|
       if @line_item.update(line_item_params)
         format.html { redirect_to @line_item, notice: 'Line item was successfully updated.' }
+        format.js
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
