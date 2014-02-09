@@ -32,10 +32,13 @@ class LineItemsController < ApplicationController
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to store_url }
-        format.json { render action: 'show', status: :created, location: @line_item }
+        format.js
+        format.json { render action: 'show',
+          status: :created, location: @line_item }
       else
         format.html { render action: 'new' }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+        format.json { render json: @line_item.errors,
+          status: :unprocessable_entity }
       end
     end
   end
@@ -46,7 +49,6 @@ class LineItemsController < ApplicationController
     respond_to do |format|
       if @line_item.update(line_item_params)
         format.html { redirect_to @line_item, notice: 'Line item was successfully updated.' }
-        format.js
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -71,8 +73,10 @@ class LineItemsController < ApplicationController
       @line_item = LineItem.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Never trust parameters from the scary internet, only allow the white
+    # list through.
     def line_item_params
-      params.require(:line_item).permit(:product_id, :cart_id)
+      params.require(:line_item).permit(:product_id)
     end
+  #...
 end
